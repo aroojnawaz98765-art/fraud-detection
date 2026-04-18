@@ -1,8 +1,7 @@
 import streamlit as st
 import numpy as np
-import os
-import joblib
 from sklearn.ensemble import RandomForestClassifier
+import os
 
 st.set_page_config(
     page_title="Fraud Detection System",
@@ -21,7 +20,6 @@ with st.sidebar:
     
     **Model Performance:**
     - Accuracy: **99%+**
-    - Precision: **95%+**
     """)
     
     st.header("🚨 High Risk Indicators")
@@ -181,26 +179,6 @@ with col2:
                 st.success(f"🟢 LOW RISK: {risk_percentage:.0f}%")
             
             st.progress(risk_percentage/100)
-            
-            # Show risk factors
-            st.subheader("Risk Factors Detected:")
-            risks = []
-            if amount > 5000:
-                risks.append("• High transaction amount ($" + f"{amount:,.0f}" + ")")
-            if time_of_day == "Late Night (12AM - 6AM)":
-                risks.append("• Late night transaction")
-            if location == "International":
-                risks.append("• International location")
-            if device == "Unknown Device":
-                risks.append("• Unknown device")
-            if frequency == "Suspicious Pattern":
-                risks.append("• Unusual spending pattern")
-            
-            if risks:
-                for risk in risks:
-                    st.write(risk)
-            else:
-                st.write("• No significant risk factors detected")
 
 # Footer
 st.markdown("---")
